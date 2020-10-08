@@ -8,4 +8,6 @@ router.get('/', landing.get_landing);
 // Submit lead email
 router.post('/', landing.submit_lead)
 
+// GET leads list
+
 module.exports = router;

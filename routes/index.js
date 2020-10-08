@@ -12,4 +12,7 @@ router.post('/', landing.submit_lead)
 // GET leads list
 router.get('/leads', landing.show_leads)
 
+// GET particular lead details
+router.get('/lead/:lead_id', landing.show_lead)
+
 module.exports = router;

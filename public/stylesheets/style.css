@@ -8,3 +8,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.font-weight-bold {
+  font-weight: 600 !important;
+}

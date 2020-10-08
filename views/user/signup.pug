@@ -1,0 +1,32 @@
+
+doctype html
+html(lang='en')
+  include ../common/head.pug
+  +head("Sign up")
+  body
+    header
+      include ../common/navbar.pug
+      +navbar()
+      .container
+        .row
+          .col-sm-12.offset-md-2.col-md-8.mt-5
+            .jumbotron
+              h2.text-center Sign up
+              .row
+                .col-sm-12.col-md-12
+                  form(action='/signup', method='POST')
+                    div.formgroup
+                      label.small.mb-1.mt-3 Email:
+                      input(placeholder='Please enter your email', required=true, name='email', type='email', value=formData.email).form-control
+                      if (errors && errors.email)
+                        p.small.text-danger #{errors.email}
+                      label.small.mb-1.mt-3 Password:
+                      input(placeholder='New Password',required=true, name='password', type='password', value='').form-control
+                      if (errors && errors.password)
+                        p.small.text-danger #{errors.password}
+                      button.mt-3.btn.btn-primary(type='submit') Sign up
+                      p.mt-2.mb-0
+                        | Already have an account? #[a(href="/login") Log in here].
+
+    include ../common/footer.pug
+    +footer()

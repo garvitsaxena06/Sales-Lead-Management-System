@@ -2,10 +2,12 @@ const { response } = require("../app");
 
 const models = require('../models')
 
+// GET home page
 exports.get_landing = function(req, res, next) {
     res.render('landing');
 }
 
+// Submit lead email
 exports.submit_lead = function(req, res, next) {
     console.log("Lead email: ", req.body.lead_email)
     return models.Lead.create({
@@ -15,12 +17,14 @@ exports.submit_lead = function(req, res, next) {
     })
 }
 
+// GET leads list
 exports.show_leads = function(req, res, next) {
     return models.Lead.findAll().then(leads => {
         res.render('lead/leads', { title: 'Leads list', leads: leads });
     })
 }
 
+// GET particular lead details
 exports.show_lead = function(req, res, next) {
     return models.Lead.findOne({
         where: {
@@ -31,6 +35,7 @@ exports.show_lead = function(req, res, next) {
     })
 }
 
+// GET edit a lead's details page
 exports.show_edit_lead = function(req, res, next) {
     return models.Lead.findOne({
         where: {
@@ -41,6 +46,7 @@ exports.show_edit_lead = function(req, res, next) {
     })
 }
 
+// Submit edit lead's details
 exports.edit_lead = function(req, res, next) {
     return models.Lead.update({
         email: req.body.lead_email
@@ -53,6 +59,7 @@ exports.edit_lead = function(req, res, next) {
     })
 }
 
+// Deleting a lead's details
 exports.delete_lead = function(req, res, next) {
     return models.Lead.destroy({
         where: {
@@ -63,6 +70,7 @@ exports.delete_lead = function(req, res, next) {
     })
 }
 
+// Deleting a lead's details --AJAX method
 exports.delete_lead_json = function(req, res, next) {
     return models.Lead.destroy({
         where: {

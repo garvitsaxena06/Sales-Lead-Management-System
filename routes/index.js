@@ -1,9 +1,16 @@
 var express = require('express');
 var router = express.Router();
-let landing = require('../controllers/landing');
-const { route } = require('./users');
 
-/* GET home page. */
+let landing = require('../controllers/landing');
+let user = require('../controllers/user')
+
+// GET login page
+router.get('/login', user.show_login)
+
+// GET signup page
+router.get('/signup', user.show_signup)
+
+// GET home page
 router.get('/', landing.get_landing);
 
 // Submit lead email
@@ -25,6 +32,6 @@ router.post('/lead/:lead_id/edit', landing.edit_lead)
 router.post('/lead/:lead_id/delete', landing.delete_lead)
 
 // Deleting a lead's details --AJAX method
-router.post('/lead/:lead_id/delete-js on', landing.delete_lead_json)
+router.post('/lead/:lead_id/delete-json', landing.delete_lead_json)
 
 module.exports = router;

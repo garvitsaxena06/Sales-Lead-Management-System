@@ -25,6 +25,6 @@ router.post('/lead/:lead_id/edit', landing.edit_lead)
 router.post('/lead/:lead_id/delete', landing.delete_lead)
 
 // Deleting a lead's details --AJAX method
-router.post('/lead/:lead_id/delete-json', landing.delete_lead_json)
+router.post('/lead/:lead_id/delete-js on', landing.delete_lead_json)
 
 module.exports = router;

@@ -1,22 +1,20 @@
 doctype html
 html(lang="en")
   include common/head.pug
-  +head("Starter MVP")
+  +head("Sales lead management system")
   body
-    h1= title
-    p Welcome to #{title}
-    form(action="/", method="post")
-      input(type="email", name="lead_email", placeholder="Enter email")
-      button(type="submit") Submit
-    if leads
-      h1 Leads
-      for lead in leads
-        p(id=lead.id)
-          span #{lead.email} 
-          |
-          a(href="/lead/" + lead.id) Details 
-          |
-          button(onclick=`deleteLead('${lead.id}')`) Delete
+    header
+      include common/navbar.pug
+      +navbar()
+      .container
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            h1.mb-3.mt-5 Minimum Viable Product
+              p.lead.mt-3 Sales lead management system
+            form(action="/", method="POST")
+              .input-group.mb-3
+                input(name="lead_email", type="email", placeholder="Enter your email address").form-control
+                .input-group-append
+                  button(type="submit").btn.btn-primary Get Started
     include common/footer.pug
     +footer()
-    script(src="/javascripts/leads.js")

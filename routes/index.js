@@ -21,4 +21,7 @@ router.get('/lead/:lead_id/edit', landing.show_edit_lead)
 // Submit edit lead's details
 router.post('/lead/:lead_id/edit', landing.edit_lead)
 
+// Deleting a lead's details
+router.post('/lead/:lead_id/delete', landing.delete_lead)
+
 module.exports = router;

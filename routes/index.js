@@ -15,4 +15,10 @@ router.get('/leads', landing.show_leads)
 // GET particular lead details
 router.get('/lead/:lead_id', landing.show_lead)
 
+// GET edit a lead's details page
+router.get('/lead/:lead_id/edit', landing.show_edit_lead)
+
+// Submit edit lead's details
+router.post('/lead/:lead_id/edit', landing.edit_lead)
+
 module.exports = router;

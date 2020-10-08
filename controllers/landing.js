@@ -1,10 +1,8 @@
-const { response } = require("../app");
-
 const models = require('../models')
 
 // GET home page
 exports.get_landing = function(req, res, next) {
-    res.render('landing');
+    res.render('landing', { user: req.user });
 }
 
 // Submit lead email

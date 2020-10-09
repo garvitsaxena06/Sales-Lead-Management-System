@@ -24,7 +24,7 @@ exports.validateLoginUser = function(errors, req) {
 		}).then(u => {
             console.log()
 			if (u === null) {
-                errors["email"] = "Account doesn't exist, please create a new account.";
+                errors["email"] = "Account doesn't exist, please check your email or create a new account.";
             }
             else {
                 if (!bcrypt.compareSync(req.body.password, u.dataValues.password)) {

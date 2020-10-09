@@ -1,7 +1,7 @@
 # POC - Sales-Lead-Management-System
 
 > Web app created using Node.js, Express.js, PostgreSQL, and Bootstrap.
-> CRUD application to collect sales leads (also includes user auth).
+> CRUD application to collect sales leads (also includes user auth and admin login).
 
 ## Install Dependencies
 ```

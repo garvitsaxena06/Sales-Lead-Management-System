@@ -4,11 +4,16 @@ let bcrypt = require('bcrypt')
 const myPassport = require('../passport_setup')(passport)
 let flash = require('connect-flash')
 const { validateUser } = require('../validators/signup')
+const { validateLoginUser } = require('../validators/login')
 const { isEmpty } = require('lodash')
 
 // GET login page
 exports.show_login = function(req, res, next) {
     res.render('user/login', { formData: {}, errors: {} })
+}
+
+const rerender_login = function(errors, req, res, next) {
+    res.render('user/login', { formData: req.body, errors: errors })
 }
 
 // GET signup page
@@ -22,11 +27,21 @@ const rerender_signup = function(errors, req, res, next) {
 
 // POST login
 exports.login = function(req, res, next) {
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash: true
-    })(req, res, next)
+    let errors = {};
+	return validateLoginUser(errors, req).then(errors => {
+		if (!isEmpty(errors)) {
+			rerender_login(errors, req, res, next);
+        }
+        else {
+            passport.authenticate('local', {
+                successRedirect: '/',
+                failureRedirect: '/login',
+                failureFlash: true
+            })(req, res, next)
+        }
+    }).catch(err => {
+        console.log(err)
+    })
 }
 
 // POST signup
@@ -39,7 +54,8 @@ exports.signup = function(req, res, next) {
 	return validateUser(errors, req).then(errors => {
 		if (!isEmpty(errors)) {
 			rerender_signup(errors, req, res, next);
-		} else {
+        } 
+        else {
             return models.User.findOne({
                 where: {
                     is_admin: true

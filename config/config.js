@@ -1,4 +1,3 @@
-
 module.exports= {
   "development": {
     "username": "express-mvp-dbuser",

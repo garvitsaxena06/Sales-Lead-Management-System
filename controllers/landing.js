@@ -2,6 +2,9 @@ const models = require('../models')
 
 // GET home page
 exports.get_landing = function(req, res, next) {
+    if (req.user) {
+        console.log(req.user.dataValues.is_admin)
+    }
     res.render('landing', { user: req.user });
 }
 
@@ -18,7 +21,7 @@ exports.submit_lead = function(req, res, next) {
 // GET leads list
 exports.show_leads = function(req, res, next) {
     return models.Lead.findAll().then(leads => {
-        res.render('lead/leads', { title: 'Leads list', leads: leads });
+        res.render('lead/leads', { title: 'Leads list', leads: leads, user: req.user });
     })
 }
 
@@ -29,7 +32,7 @@ exports.show_lead = function(req, res, next) {
             id: req.params.lead_id
         }
     }).then(lead => {
-        res.render('lead/lead', {title: 'Lead details', lead: lead})
+        res.render('lead/lead', { title: 'Lead details', lead: lead, user: req.user })
     })
 }
 
@@ -40,7 +43,7 @@ exports.show_edit_lead = function(req, res, next) {
             id: req.params.lead_id
         }
     }).then(lead => {
-        res.render('lead/edit_lead', {title: 'Update lead', lead: lead})
+        res.render('lead/edit_lead', { title: 'Update lead', lead: lead, user: req.user })
     })
 }
 

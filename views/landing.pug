@@ -10,11 +10,17 @@ html(lang="en")
         .row.align-items-center
           .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
             h1.mb-3.mt-5 Minimum Viable Product
-              p.lead.mt-3 Sales lead management system
+              p.lead.mt-3.font-weight-bold Sales lead management system
             form(action="/", method="POST")
               .input-group.mb-3
                 input(name="lead_email", type="email", placeholder="Enter your email address").form-control
                 .input-group-append
                   button(type="submit").btn.btn-primary Get Started
+            if user
+              if user.dataValues.is_admin
+                h5.mb-3.mt-5.font-weight-bold This is an admin account
+              if !user.dataValues.is_admin
+                p.mb-3.mt-5.font-weight-bold This is an user account (not admin)
+            h4.text-danger.font-weight-bold *Only admin can see the sales lead list*
     include common/footer.pug
     +footer()

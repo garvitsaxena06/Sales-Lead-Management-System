@@ -6,7 +6,7 @@ html(lang='en')
   body
     header
       include ../common/navbar.pug
-      +navbar()
+      +navbar(user)
       .container
         .row
           .col-sm-12.offset-md-2.col-md-8.mt-5
@@ -26,8 +26,6 @@ html(lang='en')
                         p.small.text-danger.font-weight-bold #{errors.password}
                       button.mt-3.btn.btn-primary(type='submit') Log in
                       p.mt-2.mb-0
-                        | Forgot your password? #[a(href="#") Reset here].
-                      p.m-0
                         | Don't have an account? #[a(href="/signup") Sign up here].
 
     include ../common/footer.pug

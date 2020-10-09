@@ -7,8 +7,6 @@ const { validateUser } = require('../validators/signup')
 const { validateLoginUser } = require('../validators/login')
 const { isEmpty } = require('lodash')
 
-var isAdmin = false
-
 // GET login page
 exports.show_login = function(req, res, next) {
     res.render('user/login', { formData: {}, errors: {} })
